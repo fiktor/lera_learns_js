@@ -5,24 +5,54 @@ function IsNumber(c) {
 
 function CheckProblem(problem) {
   const l = problem.length;
+    
   for (let i = 0; i < l; i++) {
     if (problem[i] !== "+" && problem[i] !== "-" && problem[i] !== "(" && problem[i] !== ")" && problem[i] !== " " && !IsNumber(problem[i])) {
+      
       return false;
     }
-    let n = 0;
-    let m = 0;
+    var n = 0;
+    var m = 0;
     for (let i = 0; i < l; i++) {
       if (problem[i] == "(") {
-        n = i;    
+        n = n+1;
+        
       }
+    }
+    for (let i = 0; i < l; i++) {
       if (problem[i] == ")") {
-        m = i;
+        m = m+1;
+        
       }
-      if (m !== n) {
+    }
+      
+      
+    
+    
+   if (m !== n) {
         return false;
+    } 
+      
+      
+    for (let i = 0; i < l; i++) {
+      if (problem[i] == "(") {
+        n = i;
+          console.log(i);
+       for (let j = 0; j < l; j++) {
+         if (problem[j] == ")") {
+             m = j;
+             console.log(j);
+         }
+       }
+          if (n < m) {
+              return true;
+          }
+          return false;
       }
     }
   }
+    
+    return true;
 }
 
 function CheckProblem2(solution) {
